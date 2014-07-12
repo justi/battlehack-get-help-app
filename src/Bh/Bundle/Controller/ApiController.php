@@ -28,6 +28,7 @@ class ApiController extends Controller
         $user->setToken(md5(rand()));
         $em->flush();
         return $this->json([
+            'email_hash' => $user->getEmailHash(),
             'login_token' => $user->getToken(),
         ]);
     }

@@ -14,7 +14,7 @@ use Bh\Bundle\Entity\Task;
 
 class Controller extends BaseController
 {
-    private function json($data)
+    protected function json($data)
     {
         $resp = new Response(json_encode($data));
         $resp->headers->set('Content-Type', 'application/json');
@@ -23,21 +23,21 @@ class Controller extends BaseController
         $resp->headers->set('Access-Control-Allow-Method', 'GET, POST, DELETE');
         return $resp;
     }
-    private function data($req)
+    protected function data($req)
     {
         return json_decode($req->getContent(), true);
     }
-    private function success()
+    protected function success()
     {
         return $this->json(true);
     }
-    private function error($msg)
+    protected function error($msg)
     {
         $resp = $this->json(['success' => false, 'message' => $msg]);
         $resp->setStatusCode(400);
         return $resp;
     }
-    private function user($req)
+    protected function user($req)
     {
         $em = $this->getDoctrine()->getManager();
         $token = $req->headers->get('X-Token');
@@ -46,7 +46,7 @@ class Controller extends BaseController
             throw new AccessDeniedException();
         return $user;
     }
-    private function ts($ts)
+    protected function ts($ts)
     {
         if ($ts instanceOf DateTime)
             return $ts->getTimestamp() * 1000;
