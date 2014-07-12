@@ -4,3 +4,9 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onException, priority: 255 }
 
+    bh.email:
+        class: Bh\Bundle\Services\EmailService
+        arguments:
+            - %sendgrid_user%
+            - %sendgrid_pass%
+

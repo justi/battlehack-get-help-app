@@ -17,3 +17,7 @@ parameters:
     debug_toolbar:          true
     debug_redirects:        false
     use_assetic_controller: true
+
+    sendgrid_user: twratajczak
+    sendgrid_pass: Nkd2LppszoV4eh5prEpCkI7U
+
