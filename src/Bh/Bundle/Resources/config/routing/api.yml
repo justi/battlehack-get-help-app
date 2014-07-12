@@ -7,6 +7,10 @@ bh_api_points:
     path:     /points
     defaults: { _controller: BhBundle:Api:points }
 
+bh_api_task:
+    path:     /task/my
+    methods:  [GET]
+    defaults: { _controller: BhBundle:Api:task }
 bh_api_task_add:
     path:     /task
     methods:  [POST]

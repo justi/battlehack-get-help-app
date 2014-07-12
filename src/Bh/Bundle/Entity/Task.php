@@ -3,6 +3,7 @@
 namespace Bh\Bundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * Task
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Task
+class Task implements JsonSerializable
 {
     /**
      * @var integer
@@ -56,6 +57,22 @@ class Task
 
     /** @ORM\Column(type="datetime", nullable=true) */
     private $done;
+
+    public function jsonSerialize()
+    {
+        return [
+            'type' => $this->getType(),
+            'title' => $this->getTitle(),
+            'details' => $this->getDetails(),
+            'deadline' => 1000 * $this->getDeadline()->getTimestamp(),
+            'lat' => $this->getLat(),
+            'lng' => $this->getLng(),
+            'ts' => 1000 * $this->getTs()->getTimestamp(),
+            'redeem' => $this->getToken(),
+            'accepted' => $this->getAccepted(),
+            'points' => $this->getPoints(),
+        ];
+    }
 
     /**
      * Get id

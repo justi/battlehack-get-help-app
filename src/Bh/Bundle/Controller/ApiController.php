@@ -5,6 +5,7 @@ namespace Bh\Bundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use DateTime;
 
@@ -40,7 +41,10 @@ class ApiController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $token = $req->headers->get('X-Token');
-        return $em->getRepository('BhBundle:User')->findOneBy(['token' => $token]);
+        $user = $em->getRepository('BhBundle:User')->findOneBy(['token' => $token]);
+        if (!$user)
+            throw new AccessDeniedException();
+        return $user;
     }
     private function ts($ts)
     {
@@ -109,6 +113,12 @@ class ApiController extends Controller
         return $this->json([
             'redeem' => $task->getToken(),
         ]);
+    }
+
+    public function taskAction(Request $req)
+    {
+        $user = $this->user($req);
+        return $this->json($user->getTaskAdded());
     }
 
     public function taskDeleteAction(Request $req)
