@@ -33,6 +33,11 @@ class User
      /** @ORM\Column(type="integer") */
     private $points;
 
+    /** @ORM\OneToOne(targetEntity="Task") */
+    private $taskAdded;
+    /** @ORM\OneToOne(targetEntity="Task") */
+    private $taskAccepted;
+
     /** @ORM\OneToMany(targetEntity="Task", mappedBy="added") */
     private $added;
 
@@ -139,5 +144,125 @@ class User
     public function getPoints()
     {
         return $this->points;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->added = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->accepted = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set taskAdded
+     *
+     * @param \Bh\Bundle\Entity\Task $taskAdded
+     * @return User
+     */
+    public function setTaskAdded(\Bh\Bundle\Entity\Task $taskAdded = null)
+    {
+        $this->taskAdded = $taskAdded;
+
+        return $this;
+    }
+
+    /**
+     * Get taskAdded
+     *
+     * @return \Bh\Bundle\Entity\Task 
+     */
+    public function getTaskAdded()
+    {
+        return $this->taskAdded;
+    }
+
+    /**
+     * Set taskAccepted
+     *
+     * @param \Bh\Bundle\Entity\Task $taskAccepted
+     * @return User
+     */
+    public function setTaskAccepted(\Bh\Bundle\Entity\Task $taskAccepted = null)
+    {
+        $this->taskAccepted = $taskAccepted;
+
+        return $this;
+    }
+
+    /**
+     * Get taskAccepted
+     *
+     * @return \Bh\Bundle\Entity\Task 
+     */
+    public function getTaskAccepted()
+    {
+        return $this->taskAccepted;
+    }
+
+    /**
+     * Add added
+     *
+     * @param \Bh\Bundle\Entity\Task $added
+     * @return User
+     */
+    public function addAdded(\Bh\Bundle\Entity\Task $added)
+    {
+        $this->added[] = $added;
+
+        return $this;
+    }
+
+    /**
+     * Remove added
+     *
+     * @param \Bh\Bundle\Entity\Task $added
+     */
+    public function removeAdded(\Bh\Bundle\Entity\Task $added)
+    {
+        $this->added->removeElement($added);
+    }
+
+    /**
+     * Get added
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAdded()
+    {
+        return $this->added;
+    }
+
+    /**
+     * Add accepted
+     *
+     * @param \Bh\Bundle\Entity\Task $accepted
+     * @return User
+     */
+    public function addAccepted(\Bh\Bundle\Entity\Task $accepted)
+    {
+        $this->accepted[] = $accepted;
+
+        return $this;
+    }
+
+    /**
+     * Remove accepted
+     *
+     * @param \Bh\Bundle\Entity\Task $accepted
+     */
+    public function removeAccepted(\Bh\Bundle\Entity\Task $accepted)
+    {
+        $this->accepted->removeElement($accepted);
+    }
+
+    /**
+     * Get accepted
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAccepted()
+    {
+        return $this->accepted;
     }
 }

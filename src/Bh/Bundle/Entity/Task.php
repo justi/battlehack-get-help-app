@@ -24,6 +24,9 @@ class Task
     /** @ORM\Column(type="text") */
     private $title;
 
+    /** @ORM\Column(type="string", length=63) */
+    private $type;
+
     /** @ORM\Column(type="text") */
     private $details;
 
@@ -315,5 +318,28 @@ class Task
     public function getAccepted()
     {
         return $this->accepted;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return Task
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

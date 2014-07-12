@@ -28,7 +28,7 @@ class ApiController extends Controller
     }
     private function success()
     {
-        return $this->json();
+        return $this->json(true);
     }
     private function error($msg)
     {
@@ -78,7 +78,7 @@ class ApiController extends Controller
         ]);
     }
 
-    public function taskAddAction()
+    public function taskAddAction(Request $req)
     {
         $user = $this->user($req);
         if ($user->getTaskAdded() or $user->getTaskAccepted())
@@ -100,11 +100,30 @@ class ApiController extends Controller
         $task->setLat($data['lat']);
         $task->setLng($data['lng']);
         $task->setDeadline($this->ts($data['deadline']));
+        $task->setTs(new DateTime());
+        $task->setToken(md5(rand()));
         $em->persist($task);
-        $user->setAdded($task);
+        $user->setTaskAdded($task);
         $user->setPoints($user->getPoints() - $points);
         $em->flush();
-        return $this->json();
+        return $this->json([
+            'redeem' => $task->getToken(),
+        ]);
+    }
+
+    public function taskDeleteAction(Request $req)
+    {
+        $user = $this->user($req);
+        $em = $this->getDoctrine()->getManager();
+        if ($task = $user->getTaskAdded()) {
+            $user->setPoints($user->getPoints() + $task->getPoints());
+            $user->setTaskAdded(null);
+        } else if ($task = $user->getTaskAccepted()) {
+            $user->setTaskAccepted(null);
+        }
+        $em->flush();
+
+        return $this->success();
     }
 
     public function taskListAction()

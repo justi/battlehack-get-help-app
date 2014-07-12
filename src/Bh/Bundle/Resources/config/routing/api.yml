@@ -11,6 +11,10 @@ bh_api_task_add:
     path:     /task
     methods:  [POST]
     defaults: { _controller: BhBundle:Api:taskAdd }
+bh_api_task_delete:
+    path:     /task/delete
+    methods:  [POST]
+    defaults: { _controller: BhBundle:Api:taskDelete }
 bh_api_task_list:
     path:     /task
     methods:  [GET]
