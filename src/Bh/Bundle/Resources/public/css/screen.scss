@@ -1,0 +1,210 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+/* COLORS */
+$list-color: #457964;
+$list-color-darker: shade($list-color, 20);
+$list-color-lighter: tint($list-color, 20);
+$page-background-1: #C7DFD6;
+$page-background-2: rgba(255, 255, 255, 0.4);
+$page-font-color-1: #2A3A34;
+$page-font-color-2: #000;
+
+/* SIZES */
+$page-font-size: 16px;
+$page-width: 960px;
+
+
+* {
+	line-height: 1;
+	position: relative;
+	margin: 0;
+	border: 0 none;
+	outline: none;
+	padding: 0;
+}
+
+body {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: 300;
+	font-size: $page-font-size;
+	background-color: $page-background-1;
+}
+
+div.container {
+	width: $page-width;
+	margin: 0 auto;
+	background-color: $page-background-2;
+	padding: 32px;
+	box-sizing: border-box;
+	
+	.page-content {
+		padding: 64px 32px 64px;
+	}
+}
+
+ul.main-menu {
+	width: $page-width;
+	padding: 0 calc(50% - #{$page-width} / 2);
+	background-color: shade($page-background-1, 40);
+
+	li {
+		display: inline-block;
+	
+		a {
+			display: block;
+			line-height: 64px;
+			padding: 0 16px;
+			font-size: $page-font-size * 2;
+			text-decoration: none;
+			font-family: 'Open Sans', sns-serif;
+			font-weight: 400;
+			color: tint($page-background-1, 40);
+			
+			&:hover {
+				background-color: shade($page-background-1, 60);
+			}
+		}
+	
+	}
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Open Sans', sans-serif;
+	margin: 32px 0px 8px;
+	font-weight: 600;
+	color: $page-font-color-1;
+	
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+h3, h4, h5, h6 {
+	font-style: italic;
+	color: $page-font-color-2;
+	margin: 16px 0px 8px;
+}
+
+@for $i from 1 to 7 {
+	h#{$i} {
+		font-size: $page-font-size + (6 - $i) * 3;
+	}
+}
+
+a {
+	color: $page-font-color-1;
+	text-decoration: underline;
+}
+
+p {
+	line-height: 1.5;
+	text-indent: 16px;
+	margin: 8px 0;
+}
+
+ul:not(.main-menu), ol {
+	list-style: none;
+	padding: 0 32px;
+	margin: 16px 0;
+	
+	> li {
+		margin-top: 4px;
+		line-height: 24px;
+		
+		&:first-child {
+			margin-top: 0;
+		}
+		
+		> ol, > ul {
+			margin: 4px 0 0;
+			padding: 0 32px;
+		}
+		
+		> ol > li:before{
+			content: counter(ol-counter, lower-alpha);
+		}
+		
+		&:before {
+			content: counter(ol-counter, decimal);
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			background: $list-color;
+			border-radius: 20px;
+			border: 3px solid $list-color-darker;
+			border-right-color: $list-color-lighter;
+			border-bottom-color: $list-color-lighter;
+			font-size: 14px;
+			line-height: 16px;
+			text-align: center;
+			font-weight: bold;
+			color: white;
+			font-family: 'Courier New', monospace;
+			text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);
+			box-shadow: 0px 0px 0px 1px $list-color,
+						inset -6px -6px 6px rgba(255, 255, 255, 0.1);
+			position: absolute;
+			top: 0px;
+			left: -28px;
+		}
+	}
+}
+
+
+ol {
+	counter-reset: ol-counter;
+	
+	> li {
+		counter-increment: ol-counter;
+	}
+}
+
+ul:not(.main-menu) > li:before {
+	content: '';
+	width: 6px;
+	height: 6px;
+	top: 6px;
+	left: -22px;
+}
+
+.badge-description {
+	width: calc(50% - 8px);
+	height: 48px;
+	padding: 2px;
+	padding-left: 100px;
+	box-sizing: border-box;
+	z-index: 0;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin: 30px 8px 20px 0;
+	background: rgba(0, 0, 0, 0.4);
+	
+	.badge {
+		z-index: 1;
+		position: absolute;
+		bottom: -20px;
+		left: 0;
+	}
+	
+	> p {
+		text-indent: 0;
+		width: 100%;
+		max-height: 100%;
+		line-height: 22px;
+		margin: 0;
+		text-align: center;
+		overflow: hidden;
+		position: relative;
+		top: 50%;
+		-webkit-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		transform: translateY(-50%);
+	}
+}
+
+.fleft { float: left; }
+.clear, .clearfix { clear: both; }

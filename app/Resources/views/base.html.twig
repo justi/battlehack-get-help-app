@@ -4,7 +4,11 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700|Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css" />
+    {% stylesheets '@BhBundle/Resources/public/css/*' filter='compass' %}
+    <link rel="stylesheet" href="{{ asset_url }} ">
+    {% endstylesheets %}
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -25,6 +29,9 @@
 <div class="container page-content">
         {% block body %}{% endblock %}
 </div>
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		{% endblock %}
     </body>
 </html>
