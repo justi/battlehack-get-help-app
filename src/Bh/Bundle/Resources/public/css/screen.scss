@@ -179,7 +179,16 @@ ul.main-menu {
 
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
+	color: #004339;
+	font-family: 'Lobster', cursive;
+	font-size: 128px;
+	text-align: right;
+	margin: 0;
+	text-shadow: 4px 4px 0px #408656;
+}
+
+h2, h3, h4, h5, h6 {
 	font-family: 'Open Sans', sans-serif;
 	margin: 32px 0px 8px;
 	font-weight: 600;
@@ -200,11 +209,7 @@ h3, h4, h5, h6 {
 	margin: 16px 0px 8px;
 }
 
-h1 {
-	text-align: right;
-}
-
-@for $i from 1 to 7 {
+@for $i from 2 to 7 {
 	h#{$i} {
 		font-size: $page-font-size + (6 - $i) * 3;
 	}
