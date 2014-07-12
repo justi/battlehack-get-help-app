@@ -18,7 +18,13 @@ class ApiController extends Controller
         $resp = new Response(json_encode($data));
         $resp->headers->set('Content-Type', 'application/json');
         $resp->headers->set('Access-Control-Allow-Origin', '*');
+        $resp->headers->set('Access-Control-Allow-Headers', 'Content-Type');
+        $resp->headers->set('Access-Control-Allow-Method', 'GET, POST, DELETE');
         return $resp;
+    }
+    private function data($req)
+    {
+        return json_decode($req->getContent(), true);
     }
     private function success()
     {
@@ -47,11 +53,12 @@ class ApiController extends Controller
     public function loginAction(Request $req)
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository('BhBundle:User')->findOneBy(['email' => $req->request->get('email')]);
+        $data = $this->data($req);
+        $user = $em->getRepository('BhBundle:User')->findOneBy(['email' => $data['email']]);
         if (!$user) {
             $user = new User();
-            $user->setEmail($req->request->get('email'));
-            $user->setPhone($req->request->get('phone'));
+            $user->setEmail($data['email']);
+            $user->setPhone($data['phone']);
             $user->setPoints(10);
             $em->persist($user);
         }
@@ -75,7 +82,8 @@ class ApiController extends Controller
         $user = $this->user($req);
         if ($user->getTaskAdded() or $user->getTaskAccepted())
             return $this->error('Task in progress');
-        $points = (int) $req->request->get('points');
+        $data = $this->data($req);
+        $points = (int) $data['points'];
         if (!$points)
             return $this->error('Invalid points value');
         if ($points > $user->getPoints())
@@ -84,13 +92,13 @@ class ApiController extends Controller
 
         $task = new Task();
         $task->setAdded($user);
-        $task->setType($req->request->get('type'));
-        $task->setTitle($req->request->get('title'));
-        $task->setDetails($req->request->get('details'));
-        $task->setPoints($req->request->get('points'));
-        $task->setLat($req->request->get('lat'));
-        $task->setLng($req->request->get('lng'));
-        $task->setDeadline($this->ts($req->request->get('deadline')));
+        $task->setType($data['type']);
+        $task->setTitle($data['title']);
+        $task->setDetails($data['details']);
+        $task->setPoints($data['points']);
+        $task->setLat($data['lat']);
+        $task->setLng($data['lng']);
+        $task->setDeadline($this->ts($data['deadline']));
         $em->persist($task);
         $user->setAdded($task);
         $user->setPoints($user->getPoints() - $points);
@@ -106,8 +114,9 @@ class ApiController extends Controller
 
     public function redeemAction()
     {
+        $data = $this->data($req);
         $em = $this->getDoctrine()->getManager();
-        $task = $em->getRepository('BhBundle:Task')->findOneBy(['token' => $req->request->get('redeem')]);
+        $task = $em->getRepository('BhBundle:Task')->findOneBy(['token' => $data['redeem']]);
         if (!$task)
             return $this->error('No such task');
         if ($task->getDone())

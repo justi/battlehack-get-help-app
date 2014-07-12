@@ -1,7 +1,6 @@
-parameters:
-#    bh.example.class: Bh\Bundle\Example
-
 services:
-#    bh.example:
-#        class: %bh.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    bh.request_listener:
+        class: Bh\Bundle\Services\RequestListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onException, priority: 255 }
+

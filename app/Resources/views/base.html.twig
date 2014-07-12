@@ -3,11 +3,28 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+<link href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700|Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css" />
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+<div class="container page-head">
+</div>
+<ul class="main-menu">
+<li>
+	<a href="#home">Home</a>
+</li><li>
+	<a href="#badges">Badges</a>
+</li><li>
+	<a href="#download">Download</a>
+</li><li>
+	<a href="#points">Donate for points</a>
+</li>
+</ul>
+<div class="container page-content">
         {% block body %}{% endblock %}
+</div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
