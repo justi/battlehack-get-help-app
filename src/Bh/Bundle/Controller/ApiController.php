@@ -18,7 +18,7 @@ class ApiController extends Controller
         $resp = new Response(json_encode($data));
         $resp->headers->set('Content-Type', 'application/json');
         $resp->headers->set('Access-Control-Allow-Origin', '*');
-        $resp->headers->set('Access-Control-Allow-Headers', 'Content-Type');
+        $resp->headers->set('Access-Control-Allow-Headers', 'Content-Type, X-Token');
         $resp->headers->set('Access-Control-Allow-Method', 'GET, POST, DELETE');
         return $resp;
     }
@@ -38,7 +38,8 @@ class ApiController extends Controller
     }
     private function user($req)
     {
-        $token = substr($req->headers->get('Authorization'), strlen('token '));
+        $em = $this->getDoctrine()->getManager();
+        $token = $req->headers->get('X-Token');
         return $em->getRepository('BhBundle:User')->findOneBy(['token' => $token]);
     }
     private function ts($ts)

@@ -12,7 +12,7 @@ class RequestListener
         if ($event->getRequest()->getMethod() == 'OPTIONS') {
             $resp = new Response();
             $resp->headers->set('Access-Control-Allow-Origin', '*');
-            $resp->headers->set('Access-Control-Allow-Headers', 'Content-Type');
+            $resp->headers->set('Access-Control-Allow-Headers', 'Content-Type, X-Token');
             $resp->headers->set('Access-Control-Allow-Method', 'GET, POST, DELETE');
             $resp->setStatusCode(Response::HTTP_OK);
             $resp->headers->set('X-Status-Code', 200);
