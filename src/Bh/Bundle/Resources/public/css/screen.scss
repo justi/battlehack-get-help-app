@@ -15,7 +15,7 @@ $page-background-lighter: rgba(255, 255, 255, 0.4);
 $page-background-darker: #408656;
 $font-color-darker: rgba(0, 0, 0, 0.8);
 $font-color-lighter: rgba(0, 0, 0, 0.6);
-$container-background: #4bb873, #7c4bb8, #b84b4b, #b8954b, #4bb3b8;
+$container-background: #4bb873, #7c4bb8, #b877c9, #b8954b, #b84b4b, #4bb3b8;
 $main-menu-background: teal;
 
 /* SIZES */
@@ -140,6 +140,16 @@ div.container {
 		background-position: calc(20% - 300px) 0;
 		height: 256px;
 	}
+	
+	&.page-footer {
+
+	
+	}
+	
+	.column-3 {
+		width: calc(33.3333% - 16px);
+		margin: 0 8px;
+	}
 }
 
 ul.main-menu {
@@ -203,6 +213,8 @@ h1 {
 a {
 	color: $font-color-lighter;
 	text-decoration: underline;
+	font-weight: 700;
+	font-style: italic;
 }
 
 p {
