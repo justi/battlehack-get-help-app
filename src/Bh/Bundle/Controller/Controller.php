@@ -40,7 +40,10 @@ class Controller extends BaseController
     protected function user($req)
     {
         $em = $this->getDoctrine()->getManager();
-        $token = $req->headers->get('X-Token');
+        if ($req->query->has('token'))
+            $token = $req->query->get('token');
+        else
+            $token = $req->headers->get('X-Token');
         $user = $em->getRepository('BhBundle:User')->findOneBy(['token' => $token]);
         if (!$user)
             throw new AccessDeniedException();

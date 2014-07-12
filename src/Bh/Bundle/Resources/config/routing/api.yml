@@ -29,6 +29,10 @@ bh_api_redeem:
     methods:  [POST]
     defaults: { _controller: BhBundle:Api:redeem }
 
+bh_api_apply_delete:
+    path:     /apply/{id}/delete
+    methods:  [POST]
+    defaults: { _controller: BhBundle:Api:applyDelete }
 bh_api_apply:
     path:     /apply/{id}
     methods:  [POST]

@@ -55,12 +55,16 @@ class Task implements JsonSerializable
     /** @ORM\ManyToOne(targetEntity="User", inversedBy="accepted") */
     private $accepted;
 
+    /** @ORM\OneToMany(targetEntity="UserTask", mappedBy="task") */
+    private $applied;
+
     /** @ORM\Column(type="datetime", nullable=true) */
     private $done;
 
     public function jsonSerialize()
     {
         return [
+            'id' => $this->getId(),
             'type' => $this->getType(),
             'title' => $this->getTitle(),
             'details' => $this->getDetails(),
@@ -71,6 +75,9 @@ class Task implements JsonSerializable
             'redeem' => $this->getToken(),
             'accepted' => $this->getAccepted(),
             'points' => $this->getPoints(),
+            'added' => [
+                'email_hash' => $this->getAdded()->getEmailHash(),
+            ],
         ];
     }
 
@@ -358,5 +365,45 @@ class Task implements JsonSerializable
     public function getType()
     {
         return $this->type;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->applied = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add applied
+     *
+     * @param \Bh\Bundle\Entity\UserTask $applied
+     * @return Task
+     */
+    public function addApplied(\Bh\Bundle\Entity\UserTask $applied)
+    {
+        $this->applied[] = $applied;
+
+        return $this;
+    }
+
+    /**
+     * Remove applied
+     *
+     * @param \Bh\Bundle\Entity\UserTask $applied
+     */
+    public function removeApplied(\Bh\Bundle\Entity\UserTask $applied)
+    {
+        $this->applied->removeElement($applied);
+    }
+
+    /**
+     * Get applied
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getApplied()
+    {
+        return $this->applied;
     }
 }

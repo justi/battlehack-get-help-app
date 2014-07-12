@@ -95,10 +95,35 @@ class ApiController extends Controller
         return $this->success();
     }
 
-    public function taskListAction()
+    public function taskListAction(Request $req)
     {
+        $user = $this->user($req);
         $em = $this->getDoctrine()->getManager();
-        return $this->json($em->getRepository('BhBundle:Task')->findBy(['accepted' => null]));
+        /*
+        $qb = $em->createQueryBuilder();
+        $qb->select(['t', 'a']);
+        $qb->from('BhBundle:Task', 't');
+        $qb->andWhere('t.accepted is null');
+        $qb->andWhere('t.added != :user');
+        $qb->leftJoin('t.applied', 'a', 'with', 'a.user=:user');
+        $qb->setParameter('user', $user);
+        */
+        $rep = $em->getRepository('BhBundle:Task');
+        $repUt = $em->getRepository('BhBundle:UserTask');
+        $qb = $rep->createQueryBuilder('t');
+        $qb->andWhere('t.accepted is null');
+        $qb->andWhere('t.added != :user');
+        $qb->setParameter('user', $user);
+        $tasks = [];
+        $accepted = $user->getTaskAccepted()? $user->getTaskAccepted()->getId() : null;
+        foreach ($qb->getQuery()->getResult() as $task) {
+            $r = $task->jsonSerialize();
+            unset($r['redeem']);
+            $r['accepted'] = $accepted == $task->getId();
+            $r['applied'] = !!$repUt->findOneBy(['user' => $user, 'task' => $task]);
+            $tasks[] = $r;
+        }
+        return $this->json($tasks);
     }
 
     public function redeemAction()

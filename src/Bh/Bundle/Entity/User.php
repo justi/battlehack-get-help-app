@@ -3,6 +3,7 @@
 namespace Bh\Bundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="bh_user")
  * @ORM\Entity
  */
-class User
+class User implements JsonSerializable
 {
     /**
      * @var integer
@@ -44,6 +45,19 @@ class User
     /** @ORM\OneToMany(targetEntity="Task", mappedBy="accepted") */
     private $accepted;
 
+    /** @ORM\OneToMany(targetEntity="UserTask", mappedBy="user") */
+    private $applied;
+
+    /** @ORM\Column(type="string", length=255, nullable=true) */
+    protected $emailHash;
+
+    public function jsonSerialize()
+    {
+        return [
+            'email_hash' => $this->getEmailHash(),
+        ];
+    }
+
     /**
      * Get id
      *
@@ -63,6 +77,7 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
+        $this->emailHash = md5(strtolower(trim($email)));
 
         return $this;
     }
@@ -264,5 +279,61 @@ class User
     public function getAccepted()
     {
         return $this->accepted;
+    }
+
+    /**
+     * Set emailHash
+     *
+     * @param string $emailHash
+     * @return User
+     */
+    public function setEmailHash($emailHash)
+    {
+        $this->emailHash = $emailHash;
+
+        return $this;
+    }
+
+    /**
+     * Get emailHash
+     *
+     * @return string 
+     */
+    public function getEmailHash()
+    {
+        return $this->emailHash;
+    }
+
+    /**
+     * Add applied
+     *
+     * @param \Bh\Bundle\Entity\UserTask $applied
+     * @return User
+     */
+    public function addApplied(\Bh\Bundle\Entity\UserTask $applied)
+    {
+        $this->applied[] = $applied;
+
+        return $this;
+    }
+
+    /**
+     * Remove applied
+     *
+     * @param \Bh\Bundle\Entity\UserTask $applied
+     */
+    public function removeApplied(\Bh\Bundle\Entity\UserTask $applied)
+    {
+        $this->applied->removeElement($applied);
+    }
+
+    /**
+     * Get applied
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getApplied()
+    {
+        return $this->applied;
     }
 }
