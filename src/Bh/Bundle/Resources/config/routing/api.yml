@@ -1,0 +1,33 @@
+bh_api_login:
+    path:     /login
+    methods:  [POST]
+    defaults: { _controller: BhBundle:Api:login }
+
+bh_api_points:
+    path:     /points
+    defaults: { _controller: BhBundle:Api:points }
+
+bh_api_task_add:
+    path:     /task
+    methods:  [POST]
+    defaults: { _controller: BhBundle:Api:taskAdd }
+bh_api_task_list:
+    path:     /task
+    methods:  [GET]
+    defaults: { _controller: BhBundle:Api:taskList }
+
+bh_api_redeem:
+    path:     /redeem
+    methods:  [POST]
+    defaults: { _controller: BhBundle:Api:redeem }
+
+bh_api_apply:
+    path:     /apply/{id}
+    methods:  [POST]
+    defaults: { _controller: BhBundle:Api:apply }
+
+bh_api_accept:
+    path:     /accept
+    methods:  [POST]
+    defaults: { _controller: BhBundle:Api:accept }
+

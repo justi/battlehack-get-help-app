@@ -1,0 +1,8 @@
+bh_homepage:
+    path:     /
+    defaults: { _controller: BhBundle:Default:index }
+
+BhBundle_api:
+    resource: "@BhBundle/Resources/config/routing/api.yml"
+    prefix:   /api
+

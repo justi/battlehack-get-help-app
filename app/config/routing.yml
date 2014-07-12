@@ -1,0 +1,4 @@
+bh:
+    resource: "@BhBundle/Resources/config/routing.yml"
+    prefix:   /
+
