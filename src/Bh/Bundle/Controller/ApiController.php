@@ -10,6 +10,7 @@ use DateTime;
 
 use Bh\Bundle\Entity\User;
 use Bh\Bundle\Entity\Task;
+use Bh\Bundle\Entity\UserTask;
 
 class ApiController extends Controller
 {
@@ -144,6 +145,7 @@ class ApiController extends Controller
 
     public function applyAction($id)
     {
+        $em = $this->getDoctrine()->getManager();
         $user = $this->user($req);
         if ($user->getTaskAdded() or $user->getTaskAccepted())
             return $this->error('Task in progress');
@@ -152,6 +154,12 @@ class ApiController extends Controller
             return $this->error('No such task');
         if ($task->getAccepted())
             return $this->error('Task already accepted');
+        $ut = new UserTask();
+        $ut->setTs(new DateTime());
+        $ut->setUser($user);
+        $ut->setTask($task);
+        $em->persist($ut);
+        $em->flush();
         return $this->success();
     }
 
