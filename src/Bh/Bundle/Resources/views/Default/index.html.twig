@@ -1,44 +1,148 @@
 {% extends 'BhBundle::base.html.twig' %}
-
+{% set name = "Favourhood" %}
 {% block body %}
-<h1>Badges Preview</h1>
-<h2>Empty template</h2>
-<div class="badge bronze fleft">
-	<div class="round-number">1</div>
+<div class="container">
+	<h2 class="home">About</h2>
+	<h5>What is {{name}}?</h5>
+	<p>
+		It's a application which helps you exchange favors with people in your neighbourhood.
+	</p>
+	<h5>How can {{name}} help my community?</h5>
+	<p>
+		You simply help your neighbours! Or get some services from them which will help you know your local community better. Its all about accomplishing simple tasks, just like:
+	</p>
+	<ul>
+		<li>
+		do shopping,
+		</li>
+		<li>
+		walk the dog,
+		</li>
+		<li>
+		babysit,
+		</li>
+		<li>
+		help with packing &amp; moving out,
+		</li>
+		<li>
+		or carry heavy furniture.
+		</li>
+	</ul>
+	<p>
+		It will be much easier to deal with such problems for singles, young couples or older people. Your help will be invaluable!
+	</p>
+</div>
+<div class="container">
+	<h2>Lorem ipsum</h2>
+	<ol>
+		<li>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		</li>
+		<li>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</li>
+		<li>
+			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+		</li>
+		<li>
+			Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			<ol>
+				<li>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				</li>
+				<li>
+				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+				</li>
+				<li>
+				Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</li>
+			</ol>
+		</li>
+		<li>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		</li>
+	</ol>
+</div>
+<div class="container">
+	<h2 id="badges">Badges</h2>
+	<h4>What is it about?</h4>
+	<p>
+		Every time you help, you earn <strong>points</strong> and improve your <strong>reputation</strong>.
+	</p>
+	<h4>What kind of badges I can earn?</h4>
+	<p>
+		There are few badges to earn depending on category. Below you find list of badges and descriptions of actions you need to take to earn it.
+	</p>
+	<h5><span>"We can do it!"</span> Badge (general)</h5>
+
+	<div class="badge-description fleft">
+	<div class="badge bronze">
+		<img src="images/badge_bronze_we_can_do_it.png" width="100" height="100" title="We can do it!" />
+		<div class="round-number">1</div>
+	</div>
+		<p>
+			Accomplish <strong>5 tasks</strong>.
+		</p>
+		<div class="clearfix"></div>
+	</div>
+
+	<div class="badge-description fleft">
+	<div class="badge silver">
+		<img src="images/badge_silver_we_can_do_it.png" width="100" height="100" title="We can do it!" />
+		<div class="round-number">2</div>
+	</div>
+		<p>
+			Accomplish <strong>10 tasks</strong>.
+		</p>
+		<div class="clearfix"></div>
+	</div>
+
+	<div class="badge-description fleft">
+	<div class="badge gold">
+		<img src="images/badge_gold_we_can_do_it.png" width="100" height="100" title="We can do it!" />
+		<div class="round-number">3</div>
+	</div>
+		<p>
+			Accomplish <strong>30 tasks</strong>.
+		</p>
+		<div class="clearfix"></div>
+	</div>
+	
+	<div class="clearfix"></div>
+	<h5><span>Perfect Babysitter</span> Badge (Babysitting)</h5>
+	<div class="clearfix"></div>
+	<h5><span>Furniture Carrier</span> Badge (Moving in/out)</h5>
+	<div class="clearfix"></div>
+	<h5><span>"Two Trips are for Pussies!"</span> Badge (Groceries)</h5>
+	<div class="clearfix"></div>
+	<h5><span>Too Much Fuel</span> Badge (Transport)</h5>
+	<div class="clearfix"></div>
+	<h5><span>Pet Lover</span> Badge (Pet care)</h5>
+	<div class="clearfix"></div>
+	<h5><span>Someone's Superhero</span> Badge (Emergency)</h5>
+	<div class="clearfix"></div>
+	<h5><span>Battleaxe</span> Badge (BattleHack)</h5>
+
+	<div class="badge-description fleft">
+		<div class="badge pink">
+			<img src="images/badge_pink_battleaxes.png" width="100" height="100" title="Battleaxe Badge" />
+			<div class="round-number">&infin;</div>
+		</div>
+		<p>
+			Help with presentation of {{name}} Hack on <strong>BattleHack&nbsp;Warsaw&nbsp;2014</strong>.
+		</p>
+		<div class="clearfix"></div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+<div class="container">
+	<h2 id="download">Download</h2>
+	<p>You can download APP here:</p>
 </div>
 
-<div class="badge silver fleft">
-	<div class="round-number">2</div>
+<div class="container">
+	<h2 id="points">Donate for points</h2>
+	<p>You can <strong>donate charity to achieve bonus points</strong>.</p>
 </div>
-
-<div class="badge gold fleft">
-	<div class="round-number">3</div>
-</div>
-
-<div class="clearfix"></div>
-<h2>"We can do it!"</h2>
-
-<div class="badge bronze fleft">
-	<img src="images/badge_bronze_we_can_do_it.png" width="100" height="100" title="We can do it!" />
-	<div class="round-number">1</div>
-</div>
-
-<div class="badge silver fleft">
-	<img src="images/badge_silver_we_can_do_it.png" width="100" height="100" title="We can do it!" />
-	<div class="round-number">2</div>
-</div>
-
-<div class="badge gold fleft">
-	<img src="images/badge_gold_we_can_do_it.png" width="100" height="100" title="We can do it!" />
-	<div class="round-number">3</div>
-</div>
-<div class="clearfix"></div>
-<h2>Special BattleHack Badge</h2>
-
-<div class="badge pink fleft">
-	<img src="images/badge_pink_battleaxes.png" width="100" height="100" title="BattleHack" />
-	<div class="round-number">&infin;</div>
-</div>
-
 {% endblock %}
 
