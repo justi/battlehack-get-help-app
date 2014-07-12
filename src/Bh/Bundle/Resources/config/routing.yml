@@ -6,3 +6,7 @@ BhBundle_api:
     resource: "@BhBundle/Resources/config/routing/api.yml"
     prefix:   /api
 
+BhBundle_phone:
+    resource: "@BhBundle/Resources/config/routing/phone.yml"
+    prefix:   /phone
+
