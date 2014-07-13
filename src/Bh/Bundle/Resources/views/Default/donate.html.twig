@@ -1,0 +1,24 @@
+{% extends 'BhBundle::base.html.twig' %}
+
+{% block body %}
+<form method="post">
+<div id="checkout"></div>
+<label>Email
+<input type="text" name="email" />
+</label>
+<label>Amount
+<input type="text" name="amount" />
+</label>
+<input type="submit" />
+</form>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+<script type="application/javascript">
+braintree.setup("{{ token }}", "dropin", {
+	  container: "checkout"
+});
+</script>
+{% endblock %}

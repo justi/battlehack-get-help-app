@@ -2,6 +2,16 @@ bh_homepage:
     path:     /
     defaults: { _controller: BhBundle:Default:index }
 
+bh_donate:
+    path:     /donate
+    defaults: { _controller: BhBundle:Default:donate }
+bh_donate_error:
+    path:     /donate/error
+    defaults: { _controller: BhBundle:Default:donateError }
+bh_donate_success:
+    path:     /donate/success
+    defaults: { _controller: BhBundle:Default:donateSuccess }
+
 bh_task:
     path:     /task/{token}
     defaults: { _controller: BhBundle:Default:task }

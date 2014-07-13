@@ -21,3 +21,7 @@ parameters:
     sendgrid_user: twratajczak
     sendgrid_pass: Nkd2LppszoV4eh5prEpCkI7U
 
+    braintree_merchant: 3fx972pvm7yxwqnj
+    braintree_public: hr4ykw3d5sbcgjbm
+    braintree_private: c0fd978efea8f9e1254c6bd371067ec4
+

@@ -19,7 +19,8 @@
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "sendgrid/sendgrid": "~2.1",
-        "twilio/sdk": "~3.12"
+        "twilio/sdk": "~3.12",
+        "braintree/braintree_php": "~2.28"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

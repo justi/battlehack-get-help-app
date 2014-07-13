@@ -10,3 +10,10 @@ services:
             - %sendgrid_user%
             - %sendgrid_pass%
 
+    bh.donate:
+        class: Bh\Bundle\Services\DonateService
+        arguments:
+            - %braintree_merchant%
+            - %braintree_public%
+            - %braintree_private%
+
