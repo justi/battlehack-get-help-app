@@ -143,7 +143,7 @@ class ApiController extends Controller
         return $this->json(['points' => $task->getPoints()]);
     }
 
-    public function applyAction($id)
+    public function applyAction(Request $req, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->user($req);
@@ -163,12 +163,46 @@ class ApiController extends Controller
         return $this->success();
     }
 
-    public function acceptAction()
+    public function acceptAction(Request $req)
     {
         $user = $this->user($req);
         if (!$user->getTaskAdded())
             return $this->error('No task added');
-        return $this->json();
+        $data = $this->data($req);
+
+        $em = $this->getDoctrine()->getManager();
+        $rep = $em->getRepository('BhBundle:UserTask');
+        $qb = $rep->createQueryBuilder('ut');
+        $qb->innerJoin('ut.user', 'u');
+        $qb->andWhere('u.emailHash=:emailHash');
+        $qb->andWhere('ut.task = :task');
+        $qb->setParameter('emailHash', $data['user_id']);
+        $qb->setParameter('task', $user->getTaskAdded());
+        $ut = $qb->getQuery()->getSingleResult();
+
+        if (!$ut)
+            return $this->error('Invalid application');
+
+        $ut->getUser()->setTaskAccepted($ut->getTask());
+        $ut->getTask()->setAccepted($ut->getUser());
+
+        $em->flush();
+
+        return $this->success();
+    }
+
+    public function appliedAction(Request $req)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->user($req);
+        if (!$user->getTaskAdded())
+            return $this->error('No task added');
+        $rep = $em->getRepository('BhBundle:User');
+        $qb = $rep->createQueryBuilder('u');
+        $qb->innerJoin('u.applied', 'a');
+        $qb->andWhere('a.task=:task');
+        $qb->setParameter('task', $user->getTaskAdded());
+        return $this->json($qb->getQuery()->getResult());
     }
 }
 

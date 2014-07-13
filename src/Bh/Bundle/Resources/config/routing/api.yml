@@ -39,7 +39,12 @@ bh_api_apply:
     defaults: { _controller: BhBundle:Api:apply }
 
 bh_api_accept:
-    path:     /accept
+    path:     /accept/
     methods:  [POST]
     defaults: { _controller: BhBundle:Api:accept }
+
+bh_api_applied:
+    path:     /applied
+    methods:  [GET]
+    defaults: { _controller: BhBundle:Api:applied }
 
