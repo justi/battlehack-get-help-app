@@ -32,6 +32,10 @@ $min-page-width: 1024px;
 	box-sizing: border-box;
 }
 
+img.opaque {
+	@include opacity(0.3);
+}
+
 #checkout {
 	width: 300px;
 	padding: 20px;
@@ -297,9 +301,9 @@ ul:not(.main-menu), ol {
 			height: 16px;
 			background: $list-color;
 			border-radius: 20px;
-			border: 3px solid $list-color-darker;
-			border-right-color: $list-color-lighter;
-			border-bottom-color: $list-color-lighter;
+			border: 3px solid $list-color-lighter;
+			border-right-color: $list-color-darker;
+			border-bottom-color: $list-color-darker;
 			font-size: 14px;
 			line-height: 16px;
 			text-align: center;
@@ -368,4 +372,5 @@ ul:not(.main-menu) > li:before {
 }
 
 .fleft { float: left; }
+.fright { float: right; }
 .clear, .clearfix { clear: both; }

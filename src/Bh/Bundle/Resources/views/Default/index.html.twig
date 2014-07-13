@@ -6,7 +6,7 @@
 	<h2 class="home">About</h2>
 	<h5>What is {{name}}?</h5>
 	<p>
-		It's a application which helps you exchange favors with people in your neighbourhood.
+		It's a application which helps you exchange favors with people in your neighbourhood. App motivates to help others by gamifying good deeds and rewarding proper social behaviours.
 	</p>
 	<h5>How can {{name}} help my community?</h5>
 	<p>
@@ -109,9 +109,10 @@
 	</div>
 	<div class="clearfix"></div>
 	
+	<!--
 	<h5><span>Perfect Babysitter</span> Badge (Babysitting)</h5>
 	<div class="clearfix"></div>
-	
+	-->
 	<h5><span>Furniture Carrier</span> Badge (Moving in/out)</h5>
 	<div class="badge-description fleft">
 	<div class="badge bronze">
@@ -182,8 +183,10 @@
 		</div>
 	<div class="clearfix"></div>
 	
+	<!--
 	<h5><span>Too Much Fuel</span> Badge (Transport)</h5>
 	<div class="clearfix"></div>
+	-->
 	
 	<h5><span>Pet Lover</span> Badge (Pet care)</h5>
 		<div class="badge-description fleft">
@@ -275,7 +278,9 @@
 
 <div class="container">
 	<h2 id="points">Support charity</h2>
-	<p>You can <strong>donate charity to achieve bonus points</strong>. <a href="{{ url('bh_donate') }}">Click here</a> to donate.</p>
+	<img class="fright opaque" src="images/img_donate.png" />
+	<p class="fleft">You can <strong>donate charity to achieve bonus points</strong>.<br /><br /><a href="{{ url('bh_donate') }}">Click here</a> to donate.</p>
+	<div class="clearfix"></div>
 </div>
 {% endblock %}
 
