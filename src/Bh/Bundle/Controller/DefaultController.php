@@ -10,6 +10,11 @@ class DefaultController extends Controller
     {
         return $this->render('BhBundle:Default:index.html.twig');
     }
+	
+    public function demoAction()
+    {
+        return $this->render('BhBundle:Default:demo.html.twig');
+    }
 
     public function donateSuccessAction(Request $req)
     {
@@ -28,8 +33,8 @@ class DefaultController extends Controller
 
     public function donateAction(Request $req)
     {
+        $em = $this->getDoctrine()->getManager();
         if ('POST' == $req->getMethod()) {
-            $em = $this->getDoctrine()->getManager();
             $donate = $this->get('bh.donate');
             $user = $em->getRepository('BhBundle:User')->findOneBy(['email' => $req->request->get('email')]);
             if (!$user)
@@ -41,8 +46,13 @@ class DefaultController extends Controller
             }
             return $this->redirect($this->get('router')->generate('bh_donate_error', ['error' => $pay]));
         }
+        if ($req->query->has('email_hash')) {
+            $user = $em->getRepository('BhBundle:User')->findOneBy(['emailHash' => $req->query->get('email_hash')]);
+        } else
+            $user = null;
         return $this->render('BhBundle:Default:donate.html.twig', [
             'token' => $this->get('bh.donate')->getToken(),
+            'user' => $user,
         ]);
     }
 

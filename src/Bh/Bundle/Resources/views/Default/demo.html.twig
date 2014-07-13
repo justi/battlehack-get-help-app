@@ -1,0 +1,42 @@
+{% extends 'BhBundle::base.html.twig' %}
+
+{% block menu %}{% endblock %}
+{% block body %}
+<div class="container no-side-padding demo-logos-big">
+	<img src="/images/logos/ionic.png" />
+	<img src="/images/logos/braintree.png" />
+	<br/>
+	<img src="/images/logos/sendgrid.png" />
+	<img src="/images/logos/twilio.png" />
+</div>
+<div class="container no-side-padding demo-logos-small">
+	<img src="/images/logos/php.png" />
+	<img src="/images/logos/psql.png" />
+	<img src="/images/logos/angularjs.png" />
+	<img src="/images/logos/symfony.svg" />
+</div>
+
+<div class="container no-side-padding demo-logos-unfortunately">
+	And unfortunately without
+	<img src="/images/logos/estimote.png" /> :(
+</div>
+<div class="container no-side-padding demo-see-more">
+	<p>Here comes the <span>favourhood.org</span></p>
+</div>
+{% endblock %}
+
+{% block footer %}
+	<div class="column-3 fleft">
+		<h4>Authors</h4>
+		<p>Justyna Wojtczak, Krzysztof Hasiński<br />Aleksandra Wichert, Tomasz Ratajczak
+		</p>
+	</div>
+	<div class="column-3 fleft acenter">
+		<img src="/images/battlehack-logo.png" width="230" height="84" />
+	</div>
+	<div class="column-3 fleft aright">
+		<p>
+			&copy; BattleHack Warsaw 2014
+		</p>
+	</div>
+	{% endblock %}

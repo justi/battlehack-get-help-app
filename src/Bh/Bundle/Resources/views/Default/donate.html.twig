@@ -10,7 +10,7 @@
 		<div id="checkout" class="fleft"></div>
 		<div class="fleft">
 			<label>Email
-			<input type="text" name="email" />
+			<input type="text" name="email" {% if user %}value="{{ user.email }}" {% endif %} />
 			</label>
 			<label>Amount
 			<input type="text" name="amount" />

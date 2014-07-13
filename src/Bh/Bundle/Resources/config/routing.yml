@@ -2,6 +2,10 @@ bh_homepage:
     path:     /
     defaults: { _controller: BhBundle:Default:index }
 
+bh_demo:
+    path:     /demo
+    defaults: { _controller: BhBundle:Default:demo }
+
 bh_donate:
     path:     /donate
     defaults: { _controller: BhBundle:Default:donate }
