@@ -129,18 +129,18 @@ class ApiController extends Controller
 
     public function redeemAction()
     {
-        $data = $this->data($req);
+        $user = $this->user($req);
         $em = $this->getDoctrine()->getManager();
-        $task = $em->getRepository('BhBundle:Task')->findOneBy(['token' => $data['redeem']]);
-        if (!$task)
+        if (!($task = $user->getTaskAdded()))
             return $this->error('No such task');
         if ($task->getDone())
             return $this->error('Task already done');
-        $user->setPoints($user->getPoints() + $task->getPoints());
-        $user->setAccepted(null);
+        $redeem = $task->getAccepted();
+        $redeem->setPoints($redeem->getPoints() + $task->getPoints());
+        $redeem->setTaskAccepted(null);
         $task->setDone(new DateTime());
         $em->flush();
-        return $this->json(['points' => $task->getPoints()]);
+        return $this->success();
     }
 
     public function applyAction(Request $req, $id)
