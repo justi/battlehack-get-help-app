@@ -1,16 +1,25 @@
 {% extends 'BhBundle::base.html.twig' %}
 
 {% block body %}
-<form method="post">
-<div id="checkout"></div>
-<label>Email
-<input type="text" name="email" />
-</label>
-<label>Amount
-<input type="text" name="amount" />
-</label>
-<input type="submit" />
-</form>
+<div class="container">
+	<h2>Support charity</h2>
+	<p>
+		Donate charity to achieve bonus points.
+	</p>
+	<form method="post">
+		<div id="checkout" class="fleft"></div>
+		<div class="fleft">
+			<label>Email
+			<input type="text" name="email" />
+			</label>
+			<label>Amount
+			<input type="text" name="amount" />
+			</label>
+			<input type="submit" />
+		</div>
+		<div class="clearfix"></div>
+	</form>
+</div>
 {% endblock %}
 
 {% block javascripts %}

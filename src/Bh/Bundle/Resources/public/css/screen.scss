@@ -32,6 +32,47 @@ $min-page-width: 1024px;
 	box-sizing: border-box;
 }
 
+#checkout {
+	width: 300px;
+	padding: 20px;
+	background: white;
+	border-radius: 8px;
+	margin-top: 28px;
+	margin-right: 32px;
+}
+
+form {
+	label {
+		display: block;
+		line-height: 24px;
+	}
+	
+	input[type="text"] {
+		display: block;
+		min-width: 300px;
+		background-color: rgba(255, 255, 255, 0.9);
+		height: 32px;
+		font-size: 20px;
+		font-family: 'Open Sans Condensed', sans-serif;
+		padding: 11px 16px;
+		line-height: 32px;
+		border-radius: 8px;
+		margin: 4px 0 16px;
+	}
+	
+	input[type="submit"] {
+		display: block;
+		background-color: rgba(255, 255, 255, 0.4);
+		font-size: 20px;
+		font-family: 'Open Sans', sans-serif;
+		padding: 16px;
+		line-height: 32px;
+		border-radius: 8px;
+		margin: 16px 0 0;
+		margin-left: auto;
+	}
+}
+
 .round-number {
 	width: 22px;
 	height: 22px;
@@ -153,9 +194,9 @@ div.container {
 }
 
 ul.main-menu {
-	width: $page-width;
-	padding: 0 calc(50% - #{$page-width} / 2);
+	@include full-page-width(0px, 0px);
 	background-color: $page-background-darker;
+	text-align: center;
 
 	li {
 		display: inline-block;
