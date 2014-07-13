@@ -112,7 +112,10 @@ class ApiController extends Controller
         $rep = $em->getRepository('BhBundle:Task');
         $repUt = $em->getRepository('BhBundle:UserTask');
         $qb = $rep->createQueryBuilder('t');
-        $qb->andWhere('t.accepted is null');
+        $or = $qb->expr()->orX();
+        $or->add('t.accepted is null');
+        $or->add('t.accepted = :user');
+        $qb->andWhere($or);
         $qb->andWhere('t.added != :user');
         $qb->setParameter('user', $user);
         $tasks = [];
