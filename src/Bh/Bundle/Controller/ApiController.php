@@ -187,6 +187,11 @@ class ApiController extends Controller
         $ut->getTask()->setAccepted($ut->getUser());
 
         $em->flush();
+        
+        $fragment = $this->get('twig')->loadTemplate('BhBundle:email:accept.html.twig');
+        $this->get('bh.email')->send($ut->getUser()->getEmail(), 'Your help is needed!', $fragment->render([
+            'task' => $ut->getTask(),
+        ]));
 
         return $this->success();
     }

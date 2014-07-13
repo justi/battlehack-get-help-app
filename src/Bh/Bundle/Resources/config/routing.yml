@@ -2,6 +2,10 @@ bh_homepage:
     path:     /
     defaults: { _controller: BhBundle:Default:index }
 
+bh_task:
+    path:     /task/{token}
+    defaults: { _controller: BhBundle:Default:task }
+
 BhBundle_api:
     resource: "@BhBundle/Resources/config/routing/api.yml"
     prefix:   /api
