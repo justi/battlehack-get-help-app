@@ -17,3 +17,10 @@ services:
             - %braintree_public%
             - %braintree_private%
 
+    bh.phone:
+        class: Bh\Bundle\Services\PhoneService
+        arguments:
+            - %twilio_id%
+            - %twilio_token%
+            - %twilio_number%
+

@@ -13,10 +13,35 @@ use Bh\Bundle\Entity\Task;
 
 class PhoneController extends Controller
 {
-    public function phoneAction(Request $req)
+    private function tel($req)
     {
+        $em = $this->getDoctrine()->getManager();
+        return $em->getRepository('BhBundle:User')->findOneBy(['phone' => trim($req->request->get('Caller'), ' +')]);
+    }
 
-        return $this->success();
+    public function voiceAction(Request $req)
+    {
+        $user = $this->tel($req);
+        if (!$user)
+            return $this->render('BhBundle:Phone:unknown.xml.twig');
+        if ($user->getTaskAdded())
+            return $this->render('BhBundle:Phone:record.xml.twig');
+        if ($user->getTaskAccepted()) {
+            return $this->render('BhBundle:Phone:listen.xml.twig', [
+                'url' => $user->getTaskAccepted()->getRecording(),
+            ]);
+        }
+        return $this->render('BhBundle:Phone:say.xml.twig');
+    }
+    public function voiceDoneAction(Request $req)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->tel($req);
+        if ($user and $user->getTaskAdded()) {
+            $user->getTaskAdded()->setRecording($req->request->get('RecordingUrl'));
+            $em->flush();
+        }
+        return new Response('');
     }
 }
 

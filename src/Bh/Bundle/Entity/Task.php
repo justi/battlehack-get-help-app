@@ -61,6 +61,9 @@ class Task implements JsonSerializable
     /** @ORM\Column(type="datetime", nullable=true) */
     private $done;
 
+    /** @ORM\Column(type="json_array", nullable=true) */
+    private $recording;
+
     public function jsonSerialize()
     {
         return [
@@ -405,5 +408,28 @@ class Task implements JsonSerializable
     public function getApplied()
     {
         return $this->applied;
+    }
+
+    /**
+     * Set recording
+     *
+     * @param array $recording
+     * @return Task
+     */
+    public function setRecording($recording)
+    {
+        $this->recording = $recording;
+
+        return $this;
+    }
+
+    /**
+     * Get recording
+     *
+     * @return array 
+     */
+    public function getRecording()
+    {
+        return $this->recording;
     }
 }

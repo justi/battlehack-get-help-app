@@ -25,3 +25,7 @@ parameters:
     braintree_public: hr4ykw3d5sbcgjbm
     braintree_private: c0fd978efea8f9e1254c6bd371067ec4
 
+    twilio_id: ACd27a5c91c7420454ecd7dd267818f118
+    twilio_token: 9fd0008be5b0512f71bd3bf4893ed87f
+    twilio_number: +48618803551
+

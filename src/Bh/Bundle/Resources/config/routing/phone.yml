@@ -3,6 +3,11 @@ bh_phone_voice:
     methods:  [POST]
     defaults: { _controller: BhBundle:Phone:voice }
 
+bh_phone_voice_done:
+    path:     /voice/done
+    methods:  [POST]
+    defaults: { _controller: BhBundle:Phone:voiceDone }
+
 bh_phone_sms:
     path:     /sms
     methods:  [POST]
